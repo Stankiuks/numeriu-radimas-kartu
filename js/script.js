@@ -109,8 +109,8 @@ function createTable(auto, headerAuto, selector ) {
 }
 
 document.querySelector('#rasti').addEventListener('click', function () {
-    var result;
-    for(var i=o; i<auto.length; i++){
+    var result = new Array ();
+    for(var i=0; i<auto.length; i++){
         var atstumas, laikas, greitis;
 
         for(var j=0; j< auto [i].length; j++){
@@ -129,8 +129,14 @@ document.querySelector('#rasti').addEventListener('click', function () {
 
 
         if(greitis > 60){
-            rezult.push(auto[i]);
+            result.push(auto[i]);
         }
 
     }
+
+    var header = ['Valstybiniai numeriai', 'Nuvaziuotas atstumas, km', 'Sugaistas laikas, h', 'Vidutinis greitis, km/h'];
+    document.querySelector('.rezultatai').style.display = 'block';
+    document.querySelector('.rezultatai').style.marginBottom = '20px';
+    createTable(result, header, '.rezultatai');
+
 });
