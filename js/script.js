@@ -2,7 +2,7 @@ var auto = [
     ['ZBG 123', 98450, 3645],
     ['ABC 345', 1500, 91],
     ['LRS 222', 49506, 3250],
-    ['LRS 222', 0, 0]
+    ['LRS 223', 0, 0]
 ];
 
 var headerAuto = ['Valstybiniai numeriai', 'Nuvaziuotas atstumas, km', 'Sugaistas laikas, h'];
@@ -110,26 +110,29 @@ function createTable(auto, headerAuto, selector ) {
 
 document.querySelector('#rasti').addEventListener('click', function () {
     var result = new Array ();
-    for(var i=0; i<auto.length; i++){
+
+    var pradiniaiDuomenys = auto;
+
+    for(var i=0; i<pradiniaiDuomenys.length; i++){
         var atstumas, laikas, greitis;
 
-        for(var j=0; j< auto [i].length; j++){
+        for(var j=0; j< pradiniaiDuomenys [i].length; j++){
             switch (j){
                 case 1:
-                    atstumas = (auto [i][j]/1000).toFixed (2);
+                    atstumas = (pradiniaiDuomenys [i][j]/1000).toFixed (2);
                     break;
                 case 2:
-                    laikas = (auto [i][j]/3600).toFixed (2);
+                    laikas = (pradiniaiDuomenys [i][j]/3600).toFixed (2);
                     break;
             }
         }
 
         greitis = (atstumas/laikas).toFixed (2);
-        auto [i].push(greitis);
+        pradiniaiDuomenys [i].push(greitis);
 
 
         if(greitis > 60){
-            result.push(auto[i]);
+            result.push(pradiniaiDuomenys[i]);
         }
 
     }
